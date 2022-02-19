@@ -8,9 +8,7 @@
 #define BME_ADDR 0x76
 
 static bool
-read_val_20u(const uint8_t *const addrs,
-             size_t               n_addrs,
-             int32_t *            val)
+read_val_20u(const uint8_t *const addrs, size_t n_addrs, int32_t *val)
 {
     assert(n_addrs == 3);
 
@@ -38,9 +36,7 @@ read_val_20u(const uint8_t *const addrs,
 }
 
 static bool
-read_val_16u(const uint8_t *const addrs,
-             size_t               n_addrs,
-             int32_t *            val)
+read_val_16u(const uint8_t *const addrs, size_t n_addrs, int32_t *val)
 {
     assert(n_addrs == 2);
 
@@ -59,9 +55,7 @@ read_val_16u(const uint8_t *const addrs,
 }
 
 static bool
-read_val_16s(const uint8_t *const addrs,
-             size_t               n_addrs,
-             int32_t *            val)
+read_val_16s(const uint8_t *const addrs, size_t n_addrs, int32_t *val)
 {
     if (!read_val_16u(addrs, n_addrs, val))
     {
@@ -112,9 +106,8 @@ bme_get_temp(float *t_degC, int32_t *t_fine)
 {
     int32_t       adc_T         = 0;
     const uint8_t adc_T_addrs[] = { 0xFA, 0xFB, 0xFC };
-    if (!read_val_20u(adc_T_addrs,
-                      sizeof(adc_T_addrs) / sizeof(*adc_T_addrs),
-                      &adc_T))
+    if (!read_val_20u(
+            adc_T_addrs, sizeof(adc_T_addrs) / sizeof(*adc_T_addrs), &adc_T))
     {
         return false;
     }
@@ -161,9 +154,8 @@ bme_get_pressure(int32_t t_fine, float *p_kPa)
 {
     int32_t       adc_P         = 0;
     const uint8_t adc_P_addrs[] = { 0xF7, 0xF8, 0xF9 };
-    if (!read_val_20u(adc_P_addrs,
-                      sizeof(adc_P_addrs) / sizeof(*adc_P_addrs),
-                      &adc_P))
+    if (!read_val_20u(
+            adc_P_addrs, sizeof(adc_P_addrs) / sizeof(*adc_P_addrs), &adc_P))
     {
         return false;
     }
@@ -229,9 +221,8 @@ bme_get_humidity(int32_t t_fine, float *humidity_pcnt)
 {
     int32_t       adc_H         = 0;
     const uint8_t adc_H_addrs[] = { 0xFD, 0xFE };
-    if (!read_val_16u(adc_H_addrs,
-                      sizeof(adc_H_addrs) / sizeof(*adc_H_addrs),
-                      &adc_H))
+    if (!read_val_16u(
+            adc_H_addrs, sizeof(adc_H_addrs) / sizeof(*adc_H_addrs), &adc_H))
     {
         return false;
     }

@@ -9,11 +9,14 @@
 
 #define MEASUREMENT_PERIOD_MS 2000
 
-const char* TAG = "esp32-bme280";
+const char *TAG = "esp32-bme280";
 
-void app_main(void)
+void
+app_main(void)
 {
-    ESP_LOGI(TAG, "================================= esp32-bme280 =================================");
+    ESP_LOGI(TAG,
+             "================================= esp32-bme280 "
+             "=================================");
 
     if (!i2c_init())
     {
@@ -21,7 +24,8 @@ void app_main(void)
         return;
     }
 
-    for (;;) {
+    for (;;)
+    {
         if (!bme_configure())
         {
             ESP_LOGI(TAG, "BME configuration error!");
