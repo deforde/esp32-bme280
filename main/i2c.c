@@ -1,8 +1,7 @@
 #include "i2c.h"
 
 #include "driver/i2c.h"
-#include "esp_err.h"
-#include "esp_log.h"
+#include "err.h"
 
 #define I2C_PORT_NUM              I2C_NUM_0
 #define I2C_SDA_GPIO              21
@@ -17,16 +16,6 @@
 #define I2C_NACK                  1
 
 extern const char *TAG;
-
-#define CHECK_ESP_OK(r)                              \
-    {                                                \
-        esp_err_t e = (r);                           \
-        if (e != ESP_OK)                             \
-        {                                            \
-            ESP_LOGI(TAG, "%s", esp_err_to_name(e)); \
-            return false;                            \
-        }                                            \
-    }
 
 bool
 i2c_init()
